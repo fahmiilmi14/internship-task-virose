@@ -1,6 +1,6 @@
 # 💬 Tugas Sapa-Menyapa ESP-NOW (ESP32)
 
-## 📘 Deskripsi
+## 😼 Deskripsi
 Program ini dibuat untuk menjalankan komunikasi **sapa-menyapa** antar ESP32 menggunakan protokol **ESP-NOW**.  
 Setiap perangkat ESP32 memiliki alamat **MAC Address unik** dan dapat saling mengirim pesan seperti `HALO`, `CEK`, dan `JAWAB`.
 
@@ -8,7 +8,7 @@ Program juga bisa menerima perintah melalui **Serial Monitor** dari laptop.
 
 ---
 
-## 🧩 Struktur File
+## 😺 Struktur File
 
 - **include/**
   - `REDME` → File bawaan saat membuat file di platformIO.
