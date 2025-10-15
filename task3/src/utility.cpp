@@ -126,60 +126,67 @@ void baca_serial(void (*callback)(const uint8_t *data, int len)) {
     }
 }
 
-void process_perintah(const uint8_t *data, int len, int index_mac_address_asal) {
-    // TODO 3: implementasi kode buat processing perintah
-    uint8_t perintah = data[0]; //byte pertama itu kan kode perintah 
-    uint8_t tujuan = data[1]; //byte  keuda beridi tujuan (index Mac)
-    String Pesan = ""; //semisal ada data tambahan
+// --------------------- Proses Perintah ----------------------
+void process_perintah(const uint8_t* data,int len,int index_mac_asal){
+    if(len<2) return; // minimal 2 byte: perintah + tujuan
 
-    //jika len lebih dari 2 berarti ada data tambahan
-    if (len > 2){
-        for (int i = 0; i < len; i++){
-            Pesan += (char)data[i];
-        }
-    }
+    uint8_t perintah = data[0];
+    uint8_t tujuan   = data[1];
 
-    //nama pengirim dan tujuan
-    String nama_pengirim = (index_mac_address_asal == 1) ? "Laptop" : mac_index_to_names(index_mac_address_asal);
+    String pesan = "";
+    for(int i=2;i<len;i++) pesan += (char)data[i];
+
+    String nama_asal = (index_mac_asal==-1)?"Laptop":mac_index_to_names(index_mac_asal);
     String nama_tujuan = mac_index_to_names(tujuan);
 
-    //----------ini untuk pesan yang halo cek dan jawab--------------/
-    if(perintah == 0x00){ // Ini artie perintah HALO
-        if(index_mac_address_asal == -1){// ini buat pesan yang diterima dari serial
-            String kirim = "HALO, Halo " + nama_tujuan + " Aku " + mac_index_to_names(mac_index_ku);
-            esp_now_send(mac_addresses[tujuan], (uint8_t*)kirim.c_str(), kirim.length());
-            Serial.println("[Serial] -> [ESP-NOW] " + kirim);
-        }
-        else {
-            //diterima dari esp-now
-            String jawaban = "JAWAB, Halo Juga " + nama_pengirim + " Aku " + mac_index_to_names(mac_index_ku);
-            esp_now_send(mac_addresses[index_mac_address_asal], (uint8_t*)jawaban.c_str(), jawaban.length());
-            Serial.println("[ESP-NOW] -> Balasan " + jawaban);
-        }
-    }
-
-     else if(perintah == 0x01){ // ini utnuk perintah JAWAB
-        if(index_mac_address_asal == -1){// ini buat pesan yang diterima dari serial
-            String kirim = "CEK, " + nama_tujuan + " ini " + mac_index_to_names(mac_index_ku) + " apa kamu disana?";
-            esp_now_send(mac_addresses[tujuan], (uint8_t*)kirim.c_str(), kirim.length());
-            Serial.println("[Serial] -> [ESP-NOW] " + kirim);
-        }
-        else {
-            //diterima dari esp-now
-            String jawaban = "JAWAB, Iya Aku " + nama_pengirim + " Disini - " + mac_index_to_names(mac_index_ku);
-            esp_now_send(mac_addresses[index_mac_address_asal], (uint8_t*)jawaban.c_str(), jawaban.length());
-            Serial.println("[ESP-NOW] -> Balasan " + jawaban);
+    // --------- PERINTAH HALO ------------
+    if(perintah==0x00){
+        if(index_mac_asal==-1){ // dari Serial
+            uint8_t kirim[50];
+            kirim[0]=0x00;
+            kirim[1]=tujuan;
+            String tambahan = "Halo " + nama_tujuan + " Aku " + mac_index_to_names(mac_index_ku);
+            memcpy(&kirim[2], tambahan.c_str(), tambahan.length());
+            esp_now_send(mac_addresses[tujuan],kirim,2+tambahan.length());
+            Serial.println("[Serial]->[ESP-NOW] "+tambahan);
+        } else { // dari ESP lain
+            uint8_t balas[50];
+            balas[0]=0x01; // JAWAB
+            balas[1]=index_mac_asal;
+            String tambahan = "Halo Juga " + nama_asal + " Aku " + mac_index_to_names(mac_index_ku);
+            memcpy(&balas[2], tambahan.c_str(), tambahan.length());
+            esp_now_send(mac_addresses[index_mac_asal],balas,2+tambahan.length());
+            Serial.println("[ESP-NOW]->Balasan "+tambahan);
         }
     }
-
-    else if(perintah == 0x02){ // ini utnuk perintah CEK
-        if(index_mac_address_asal != -1){// ini buat pesan yang diterima dari serial
+    // --------- PERINTAH JAWAB ------------
+    else if(perintah==0x01){
+        if(index_mac_asal==-1){ // dari Serial
+            uint8_t kirim[50];
+            kirim[0]=0x02; // CEK
+            kirim[1]=tujuan;
+            String tambahan = nama_tujuan+" ini "+mac_index_to_names(mac_index_ku)+" apa kamu disana?";
+            memcpy(&kirim[2], tambahan.c_str(), tambahan.length());
+            esp_now_send(mac_addresses[tujuan],kirim,2+tambahan.length());
+            Serial.println("[Serial]->[ESP-NOW] "+tambahan);
+        } else { // dari ESP lain
+            uint8_t balas[50];
+            balas[0]=0x01; // JAWAB
+            balas[1]=index_mac_asal;
+            String tambahan = "Iya Aku "+nama_asal+" Disini - "+mac_index_to_names(mac_index_ku);
+            memcpy(&balas[2], tambahan.c_str(), tambahan.length());
+            esp_now_send(mac_addresses[index_mac_asal],balas,2+tambahan.length());
+            Serial.println("[ESP-NOW]->Balasan "+tambahan);
+        }
+    }
+    // --------- PERINTAH CEK ------------
+    else if(perintah==0x02){
+        if(index_mac_asal!=-1){ // hanya diterima ESP lain
             Serial.print("[JAWAB DITERIMA] ");
-            Serial.println(Pesan);
+            Serial.println(pesan);
         }
     }
-
-    else { // jika bukan HALO JAWAB ATAU CEK
-        Serial.println("[PERINTAH TIDAK VALID] - HIDUP JOKOWI");
+    else{
+        Serial.println("[PERINTAH TIDAK VALID]");
     }
 }
