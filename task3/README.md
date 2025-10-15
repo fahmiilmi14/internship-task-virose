@@ -230,6 +230,9 @@ contoh di atas: HEADER, LENGTH = 2, DATA = 01 02 → perintah CEK untuk tujuan k
 
 ----
 
+## SIMULASI WOKWI
+<img src="data/simulasiWokwi.png" width="1000">
+
 ## SEKIAN - MAAF KALAU SALAH
 
 ----
