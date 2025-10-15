@@ -125,7 +125,7 @@ void process_perintah(const uint8_t *data, int len, int index_mac_address_asal) 
 
     //jika len lebih dari 2 berarti ada data tambahan
     if (len > 2){
-        for (int i = 0; i < len; i++){
+        for (int i = 2; i < len; i++){
             Pesan += (char)data[i];
         }
     }
