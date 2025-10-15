@@ -1,4 +1,4 @@
-# 💬 Tugas Sapa-Menyapa ESP-NOW (ESP32)
+# Tugas Sapa-Menyapa ESP-NOW (ESP32)
 
 ## 😼 Deskripsi
 Program ini dibuat untuk menjalankan komunikasi **sapa-menyapa** antar ESP32 menggunakan protokol **ESP-NOW**.  
