@@ -1,11 +1,11 @@
 # **TASK-4 Cross Platform File Transfer**
 
-Proyek ini mengimplementasikan sistem **pengiriman file JSON dari PC ke ESP32 Receiver** melalui **dua tahap komunikasi**:
+Tugas ini mengimplementasikan sistem **pengiriman file JSON dari PC ke ESP32 Receiver** melalui **dua tahap komunikasi**:
 
 1. **PC → ESP32 Bridge** via **Serial (USB)**
 2. **ESP32 Bridge → ESP32 Receiver** via **ESP-NOW**
 
-Tujuan proyek ini adalah membangun komunikasi **dua arah lintas perangkat** dengan sistem **pemecahan file menjadi potongan (chunk)**, **pengiriman bertahap**, dan **rekonstruksi file JSON** di sisi penerima menggunakan **SPIFFS dan ArduinoJson**.
+Tujuan Tugas ini adalah membangun komunikasi **dua arah lintas perangkat** dengan sistem **pemecahan file menjadi potongan (chunk)**, **pengiriman bertahap**, dan **rekonstruksi file JSON** di sisi penerima menggunakan **SPIFFS dan ArduinoJson**.
 
 ---
 
