@@ -16,5 +16,6 @@ extern bool flagTerima[MAKS_CHUNK];
 extern int totalChunk;
 
 void saatTerimaData(const uint8_t *mac, const uint8_t *dataMasuk, int len);
+void simpanDanTampilFile();
 
 #endif
