@@ -1,7 +1,7 @@
 #include "receiver.h"
 #include <SPIFFS.h>
 #include <esp_now.h>
-#include <ArduinoJson>
+#include <ArduinoJson.h>
 
 char bufferTerima[MAKS_CHUNK][240];
 bool flagTerima[MAKS_CHUNK] = {false};
