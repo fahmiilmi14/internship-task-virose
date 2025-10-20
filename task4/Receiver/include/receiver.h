@@ -11,11 +11,9 @@ struct Paket {
 
 #define MAKS_CHUNK 50
 
-extern char bufferTerima[MAKS_CHUNK][240];
-extern bool flagTerima[MAKS_CHUNK];
-extern int totalChunk;
-
 void saatTerimaData(const uint8_t *mac, const uint8_t *dataMasuk, int len);
 void simpanDanTampilFile();
+
+bool semuaChunkDiterima();
 
 #endif
