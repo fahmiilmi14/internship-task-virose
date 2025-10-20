@@ -23,7 +23,7 @@ void simpanDanTampilFile() {
     }
     fileTulis.close();
 
-    // baca file ke String (lebih pemula-friendly)
+    // baca file ke String 
     File fileBaca = SPIFFS.open("/terima.json","r");
     if (!fileBaca) {
         Serial.println("Gagal buka file JSON");
