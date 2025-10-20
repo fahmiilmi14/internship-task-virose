@@ -7,6 +7,7 @@
 void setup() {
     Serial.begin(115200);
     WiFi.mode(WIFI_STA);
+    Serial.println(WiFi.macAddress());
 
     if (!SPIFFS.begin(true)) Serial.println("SPIFFS gagal");
     if (esp_now_init() != ESP_OK) Serial.println("ESP-NOW gagal");
@@ -15,10 +16,7 @@ void setup() {
 }
 
 void loop() {
-    bool semuaDiterima = true;
-    for (int i=0;i<totalChunk;i++) if (!flagTerima[i]) semuaDiterima = false;
-
-    if (semuaDiterima && totalChunk > 0) {
+    if (semuaChunkDiterima()) {
         simpanDanTampilFile();
     }
 }
