@@ -1,0 +1,4 @@
+C:/Users/ADVAN/Downloads/Task4last/build/CMakeFiles/task4.dir
+C:/Users/ADVAN/Downloads/Task4last/build/CMakeFiles/serial_lib.dir
+C:/Users/ADVAN/Downloads/Task4last/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/ADVAN/Downloads/Task4last/build/CMakeFiles/ZERO_CHECK.dir

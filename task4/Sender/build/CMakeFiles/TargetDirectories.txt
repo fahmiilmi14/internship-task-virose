@@ -1,0 +1,4 @@
+C:/Users/ADVAN/Documents/PlatformIO/Projects/task4cok/build/CMakeFiles/task4.dir
+C:/Users/ADVAN/Documents/PlatformIO/Projects/task4cok/build/CMakeFiles/serial_lib.dir
+C:/Users/ADVAN/Documents/PlatformIO/Projects/task4cok/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/ADVAN/Documents/PlatformIO/Projects/task4cok/build/CMakeFiles/ZERO_CHECK.dir

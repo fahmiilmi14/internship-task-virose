@@ -1,0 +1,7 @@
+{
+    "cmake.sourceDirectory": "C:/Users/ADVAN/Downloads/Task4last/PC",
+    "files.associations": {
+        "iosfwd": "cpp",
+        "fstream": "cpp"
+    }
+}
