@@ -534,10 +534,13 @@ DESKRIPSI DIRI: Saya adalah orang yang sangat disiplin dan rendah hati...
 
 ---
 ## Link:
+* http://wjwwood.io/serial/doc/1.1.0/index.html
 * https://www.geeksforgeeks.org/c/fread-function-in-c/
 * https://docs.arduino.cc/language-reference/en/functions/communication/serial/write/
 * https://docs.arduino.cc/language-reference/en/functions/communication/serial/readString/
 * https://arduinojson.org/v6/api/staticjsondocument/
+* https://www.programmingelectronics.com/spiffs-esp32/
+* https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/network/esp_now.html#
 
 ---
 ## Sekian MAAFF KALAUN SALAH
