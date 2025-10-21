@@ -90,10 +90,6 @@ target_include_directories(serial_lib PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/serial/include
 )
 
-target_include_directories(task4 PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}
-)
-
 target_link_libraries(task4 PRIVATE serial_lib)
 
 if (WIN32)
